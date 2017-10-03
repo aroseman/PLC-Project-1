@@ -2,6 +2,7 @@
 //
 // Use regex to check for correct grammar and then store lexicons on to appropriate stacks for output.
 
+// Just testing github version control 10/2/2017 @ 9:06ish
 #include "stdafx.h"
 
 #include <iostream>
