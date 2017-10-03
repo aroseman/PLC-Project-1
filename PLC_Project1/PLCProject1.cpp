@@ -5,6 +5,7 @@
 // Just testing github version control 10/2/2017 @ 9:06ish
 #include "stdafx.h"
 
+#include <fstream>
 #include <iostream>
 #include <stack>
 #include <regex>
@@ -13,20 +14,35 @@
 using namespace std;
 int main()
 {
-	stack<string> variables;
-	stack<int> constants;
-	stack<char> operators;
-	regex var_rgx("[a-z]*");
+	regex var_start_rgx("[^\\d*");		// Don't want variables to start with numbers so we will invert this in our conditional
+	regex var_body_rgx("[a-zA-Z0-9]");	// Everything else can be whatever
+	regex symb_rgx("[:,;(){}]");
+	regex op_rgx("[+*/-]");
 
-	string word;
-	cin >> word;
-	if (regex_match(word, var_rgx)) {
-		cout << "Matches lower case characters.";
+	stack<string> variables;			// Can't start with a digit. 
+	stack<int> constants;				// Must only contain digits/
+	stack<char> symbols;				// : , ; () {}
+	stack<char> operators;				// + - * /
+	stack<string> keywords;
+	stack<string> errors;
+
+	ifstream file ("code.txt");
+	string line;
+	
+
+	if (file.is_open()) {
+		
+
+		while (getline(file, line)) {
+			cout << line << "\n";
+
+		}
+
+		
 	}
 	else {
-		cout << "Does not match lower case characters.";
+		cout << "[!] Unable to open file\n";
 	}
-
 	system("pause");
     return 0;
 }
